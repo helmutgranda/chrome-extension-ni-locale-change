@@ -251,17 +251,26 @@ function stopListening() {
 
 function changeLanguage(locale, lang) {
   
-  chrome.cookies.set({"name":"locale","value":locale,"url":"http://www.ni.com","domain":".ni.com"},function (cookie){
+  if (locale) {
+
+    chrome.cookies.set({"name":"locale","value":locale,"url":"http://www.ni.com","domain":".ni.com"},function (cookie){
+          console.log(JSON.stringify(cookie));
+          //console.log(chrome.extension.lastError);
+          //console.log(chrome.runtime.lastError);
+      });
+
+  }
+
+
+  if (lang) {
+
+      chrome.cookies.set({"name":"lang","value":lang,"url":"http://www.ni.com","domain":".ni.com"},function (cookie){
         console.log(JSON.stringify(cookie));
         //console.log(chrome.extension.lastError);
         //console.log(chrome.runtime.lastError);
     });
 
-  chrome.cookies.set({"name":"lang","value":lang,"url":"http://www.ni.com","domain":".ni.com"},function (cookie){
-        console.log(JSON.stringify(cookie));
-        //console.log(chrome.extension.lastError);
-        //console.log(chrome.runtime.lastError);
-    });
+  }
 
 
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -299,6 +308,25 @@ document.querySelector('#en-JP').addEventListener('click', function() {changeLan
 
 document.querySelector('#de-DE').addEventListener('click', function() {changeLanguage("de-DE", "D")}, false );
 document.querySelector('#en-DE').addEventListener('click', function() {changeLanguage("en-DE", "US")}, false );
+
+document.querySelector('#fr-FR').addEventListener('click', function() {changeLanguage("fr-FR", "F")}, false );
+document.querySelector('#en-FR').addEventListener('click', function() {changeLanguage("en-FR", "US")}, false );
+document.querySelector('#fr-CH').addEventListener('click', function() {changeLanguage("fr-CH", "F")}, false );
+
+document.querySelector('#it-IT').addEventListener('click', function() {changeLanguage("it-IT", "I")}, false );
+document.querySelector('#en-IT').addEventListener('click', function() {changeLanguage("en-IT", "US")}, false );
+
+document.querySelector('#ru-RU').addEventListener('click', function() {changeLanguage("ru-RU", "RU")}, false );
+document.querySelector('#en-RU').addEventListener('click', function() {changeLanguage("en-RU", "US")}, false );
+
+document.querySelector('#es-PR').addEventListener('click', function() {changeLanguage("es-PR", "ESA")}, false );
+
+document.querySelector('#ko-KR').addEventListener('click', function() {changeLanguage("ko-KR", "KO")}, false );
+
+document.querySelector('#pt-BR').addEventListener('click', function() {changeLanguage("pt-BR", "PT")}, false );
+
+document.querySelector('#zh-TW').addEventListener('click', function() {changeLanguage("zh-TW", "ZHT")}, false );
+
 
 
 }
